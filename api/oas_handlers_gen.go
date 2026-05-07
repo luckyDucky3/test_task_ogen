@@ -35,8 +35,9 @@ func (c *codeRecorder) Unwrap() http.ResponseWriter {
 
 // handleCreateBookRequest handles createBook operation.
 //
-// Create a book.
-// Stores a new book in in-memory storage and assigns an identifier.
+// Создать книгу.
+// Сохраняет новую книгу в хранилище в памяти и
+// назначает идентификатор.
 //
 // POST /books
 func (s *Server) handleCreateBookRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
@@ -179,8 +180,8 @@ func (s *Server) handleCreateBookRequest(args [0]string, argsEscaped bool, w htt
 
 // handleDeleteBookRequest handles deleteBook operation.
 //
-// Delete a book.
-// Removes one book from in-memory storage.
+// Удалить книгу.
+// Удаляет одну книгу из хранилища в памяти.
 //
 // DELETE /books/{id}
 func (s *Server) handleDeleteBookRequest(args [1]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
@@ -323,8 +324,9 @@ func (s *Server) handleDeleteBookRequest(args [1]string, argsEscaped bool, w htt
 
 // handleGetBookRequest handles getBook operation.
 //
-// Get a book.
-// Reads one book by identifier from in-memory storage.
+// Получить книгу.
+// Читает одну книгу по идентификатору из хранилища в
+// памяти.
 //
 // GET /books/{id}
 func (s *Server) handleGetBookRequest(args [1]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
@@ -467,8 +469,8 @@ func (s *Server) handleGetBookRequest(args [1]string, argsEscaped bool, w http.R
 
 // handleListBooksRequest handles listBooks operation.
 //
-// List books.
-// Returns all books from in-memory storage.
+// Получить список книг.
+// Возвращает все книги из хранилища в памяти.
 //
 // GET /books
 func (s *Server) handleListBooksRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
@@ -592,8 +594,9 @@ func (s *Server) handleListBooksRequest(args [0]string, argsEscaped bool, w http
 
 // handleUpdateBookRequest handles updateBook operation.
 //
-// Update a book.
-// Replaces one existing book in in-memory storage.
+// Обновить книгу.
+// Заменяет одну существующую книгу в хранилище в
+// памяти.
 //
 // PUT /books/{id}
 func (s *Server) handleUpdateBookRequest(args [1]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {

@@ -15,8 +15,9 @@ var _ Handler = UnimplementedHandler{}
 
 // CreateBook implements createBook operation.
 //
-// Create a book.
-// Stores a new book in in-memory storage and assigns an identifier.
+// Создать книгу.
+// Сохраняет новую книгу в хранилище в памяти и
+// назначает идентификатор.
 //
 // POST /books
 func (UnimplementedHandler) CreateBook(ctx context.Context, req *NewBook) (r *Book, _ error) {
@@ -25,8 +26,8 @@ func (UnimplementedHandler) CreateBook(ctx context.Context, req *NewBook) (r *Bo
 
 // DeleteBook implements deleteBook operation.
 //
-// Delete a book.
-// Removes one book from in-memory storage.
+// Удалить книгу.
+// Удаляет одну книгу из хранилища в памяти.
 //
 // DELETE /books/{id}
 func (UnimplementedHandler) DeleteBook(ctx context.Context, params DeleteBookParams) error {
@@ -35,8 +36,9 @@ func (UnimplementedHandler) DeleteBook(ctx context.Context, params DeleteBookPar
 
 // GetBook implements getBook operation.
 //
-// Get a book.
-// Reads one book by identifier from in-memory storage.
+// Получить книгу.
+// Читает одну книгу по идентификатору из хранилища в
+// памяти.
 //
 // GET /books/{id}
 func (UnimplementedHandler) GetBook(ctx context.Context, params GetBookParams) (r *Book, _ error) {
@@ -45,8 +47,8 @@ func (UnimplementedHandler) GetBook(ctx context.Context, params GetBookParams) (
 
 // ListBooks implements listBooks operation.
 //
-// List books.
-// Returns all books from in-memory storage.
+// Получить список книг.
+// Возвращает все книги из хранилища в памяти.
 //
 // GET /books
 func (UnimplementedHandler) ListBooks(ctx context.Context) (r []Book, _ error) {
@@ -55,8 +57,9 @@ func (UnimplementedHandler) ListBooks(ctx context.Context) (r []Book, _ error) {
 
 // UpdateBook implements updateBook operation.
 //
-// Update a book.
-// Replaces one existing book in in-memory storage.
+// Обновить книгу.
+// Заменяет одну существующую книгу в хранилище в
+// памяти.
 //
 // PUT /books/{id}
 func (UnimplementedHandler) UpdateBook(ctx context.Context, req *NewBook, params UpdateBookParams) (r *Book, _ error) {

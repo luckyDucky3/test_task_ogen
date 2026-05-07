@@ -10,36 +10,39 @@ import (
 type Handler interface {
 	// CreateBook implements createBook operation.
 	//
-	// Create a book.
-	// Stores a new book in in-memory storage and assigns an identifier.
+	// Создать книгу.
+	// Сохраняет новую книгу в хранилище в памяти и
+	// назначает идентификатор.
 	//
 	// POST /books
 	CreateBook(ctx context.Context, req *NewBook) (*Book, error)
 	// DeleteBook implements deleteBook operation.
 	//
-	// Delete a book.
-	// Removes one book from in-memory storage.
+	// Удалить книгу.
+	// Удаляет одну книгу из хранилища в памяти.
 	//
 	// DELETE /books/{id}
 	DeleteBook(ctx context.Context, params DeleteBookParams) error
 	// GetBook implements getBook operation.
 	//
-	// Get a book.
-	// Reads one book by identifier from in-memory storage.
+	// Получить книгу.
+	// Читает одну книгу по идентификатору из хранилища в
+	// памяти.
 	//
 	// GET /books/{id}
 	GetBook(ctx context.Context, params GetBookParams) (*Book, error)
 	// ListBooks implements listBooks operation.
 	//
-	// List books.
-	// Returns all books from in-memory storage.
+	// Получить список книг.
+	// Возвращает все книги из хранилища в памяти.
 	//
 	// GET /books
 	ListBooks(ctx context.Context) ([]Book, error)
 	// UpdateBook implements updateBook operation.
 	//
-	// Update a book.
-	// Replaces one existing book in in-memory storage.
+	// Обновить книгу.
+	// Заменяет одну существующую книгу в хранилище в
+	// памяти.
 	//
 	// PUT /books/{id}
 	UpdateBook(ctx context.Context, req *NewBook, params UpdateBookParams) (*Book, error)

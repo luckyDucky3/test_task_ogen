@@ -16,7 +16,7 @@ import (
 
 // DeleteBookParams is parameters of deleteBook operation.
 type DeleteBookParams struct {
-	// Book identifier.
+	// Идентификатор книги.
 	ID int64
 }
 
@@ -82,7 +82,7 @@ func decodeDeleteBookParams(args [1]string, argsEscaped bool, r *http.Request) (
 
 // GetBookParams is parameters of getBook operation.
 type GetBookParams struct {
-	// Book identifier.
+	// Идентификатор книги.
 	ID int64
 }
 
@@ -148,7 +148,7 @@ func decodeGetBookParams(args [1]string, argsEscaped bool, r *http.Request) (par
 
 // UpdateBookParams is parameters of updateBook operation.
 type UpdateBookParams struct {
-	// Book identifier.
+	// Идентификатор книги.
 	ID int64
 }
 

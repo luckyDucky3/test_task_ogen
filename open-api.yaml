@@ -6,11 +6,11 @@ paths:
   /books:
     get:
       operationId: listBooks
-      description: List books.
-      x-description: Returns all books from in-memory storage.
+      description: Получить список книг.
+      x-description: Возвращает все книги из хранилища в памяти.
       responses:
         '200':
-          description: Books were returned.
+          description: Книги успешно возвращены.
           content:
             application/json:
               schema:
@@ -19,8 +19,8 @@ paths:
                   $ref: '#/components/schemas/Book'
     post:
       operationId: createBook
-      description: Create a book.
-      x-description: Stores a new book in in-memory storage and assigns an identifier.
+      description: Создать книгу.
+      x-description: Сохраняет новую книгу в хранилище в памяти и назначает идентификатор.
       requestBody:
         required: true
         content:
@@ -29,7 +29,7 @@ paths:
               $ref: '#/components/schemas/NewBook'
       responses:
         '201':
-          description: Book was created.
+          description: Книга успешно создана.
           content:
             application/json:
               schema:
@@ -37,21 +37,21 @@ paths:
   /books/{id}:
     get:
       operationId: getBook
-      description: Get a book.
-      x-description: Reads one book by identifier from in-memory storage.
+      description: Получить книгу.
+      x-description: Читает одну книгу по идентификатору из хранилища в памяти.
       parameters:
         - $ref: '#/components/parameters/BookID'
       responses:
         '200':
-          description: Book was returned.
+          description: Книга успешно возвращена.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Book'
     put:
       operationId: updateBook
-      description: Update a book.
-      x-description: Replaces one existing book in in-memory storage.
+      description: Обновить книгу.
+      x-description: Заменяет одну существующую книгу в хранилище в памяти.
       parameters:
         - $ref: '#/components/parameters/BookID'
       requestBody:
@@ -62,27 +62,27 @@ paths:
               $ref: '#/components/schemas/NewBook'
       responses:
         '200':
-          description: Book was updated.
+          description: Книга успешно обновлена.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Book'
     delete:
       operationId: deleteBook
-      description: Delete a book.
-      x-description: Removes one book from in-memory storage.
+      description: Удалить книгу.
+      x-description: Удаляет одну книгу из хранилища в памяти.
       parameters:
         - $ref: '#/components/parameters/BookID'
       responses:
         '204':
-          description: Book was deleted.
+          description: Книга успешно удалена.
 components:
   parameters:
     BookID:
       name: id
       in: path
       required: true
-      description: Book identifier.
+      description: Идентификатор книги.
       schema:
         type: integer
         format: int64

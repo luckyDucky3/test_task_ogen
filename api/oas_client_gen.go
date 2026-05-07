@@ -29,36 +29,39 @@ func trimTrailingSlashes(u *url.URL) {
 type Invoker interface {
 	// CreateBook invokes createBook operation.
 	//
-	// Create a book.
-	// Stores a new book in in-memory storage and assigns an identifier.
+	// Создать книгу.
+	// Сохраняет новую книгу в хранилище в памяти и
+	// назначает идентификатор.
 	//
 	// POST /books
 	CreateBook(ctx context.Context, request *NewBook) (*Book, error)
 	// DeleteBook invokes deleteBook operation.
 	//
-	// Delete a book.
-	// Removes one book from in-memory storage.
+	// Удалить книгу.
+	// Удаляет одну книгу из хранилища в памяти.
 	//
 	// DELETE /books/{id}
 	DeleteBook(ctx context.Context, params DeleteBookParams) error
 	// GetBook invokes getBook operation.
 	//
-	// Get a book.
-	// Reads one book by identifier from in-memory storage.
+	// Получить книгу.
+	// Читает одну книгу по идентификатору из хранилища в
+	// памяти.
 	//
 	// GET /books/{id}
 	GetBook(ctx context.Context, params GetBookParams) (*Book, error)
 	// ListBooks invokes listBooks operation.
 	//
-	// List books.
-	// Returns all books from in-memory storage.
+	// Получить список книг.
+	// Возвращает все книги из хранилища в памяти.
 	//
 	// GET /books
 	ListBooks(ctx context.Context) ([]Book, error)
 	// UpdateBook invokes updateBook operation.
 	//
-	// Update a book.
-	// Replaces one existing book in in-memory storage.
+	// Обновить книгу.
+	// Заменяет одну существующую книгу в хранилище в
+	// памяти.
 	//
 	// PUT /books/{id}
 	UpdateBook(ctx context.Context, request *NewBook, params UpdateBookParams) (*Book, error)
@@ -105,8 +108,9 @@ func (c *Client) requestURL(ctx context.Context) *url.URL {
 
 // CreateBook invokes createBook operation.
 //
-// Create a book.
-// Stores a new book in in-memory storage and assigns an identifier.
+// Создать книгу.
+// Сохраняет новую книгу в хранилище в памяти и
+// назначает идентификатор.
 //
 // POST /books
 func (c *Client) CreateBook(ctx context.Context, request *NewBook) (*Book, error) {
@@ -183,8 +187,8 @@ func (c *Client) sendCreateBook(ctx context.Context, request *NewBook) (res *Boo
 
 // DeleteBook invokes deleteBook operation.
 //
-// Delete a book.
-// Removes one book from in-memory storage.
+// Удалить книгу.
+// Удаляет одну книгу из хранилища в памяти.
 //
 // DELETE /books/{id}
 func (c *Client) DeleteBook(ctx context.Context, params DeleteBookParams) error {
@@ -276,8 +280,9 @@ func (c *Client) sendDeleteBook(ctx context.Context, params DeleteBookParams) (r
 
 // GetBook invokes getBook operation.
 //
-// Get a book.
-// Reads one book by identifier from in-memory storage.
+// Получить книгу.
+// Читает одну книгу по идентификатору из хранилища в
+// памяти.
 //
 // GET /books/{id}
 func (c *Client) GetBook(ctx context.Context, params GetBookParams) (*Book, error) {
@@ -369,8 +374,8 @@ func (c *Client) sendGetBook(ctx context.Context, params GetBookParams) (res *Bo
 
 // ListBooks invokes listBooks operation.
 //
-// List books.
-// Returns all books from in-memory storage.
+// Получить список книг.
+// Возвращает все книги из хранилища в памяти.
 //
 // GET /books
 func (c *Client) ListBooks(ctx context.Context) ([]Book, error) {
@@ -444,8 +449,9 @@ func (c *Client) sendListBooks(ctx context.Context) (res []Book, err error) {
 
 // UpdateBook invokes updateBook operation.
 //
-// Update a book.
-// Replaces one existing book in in-memory storage.
+// Обновить книгу.
+// Заменяет одну существующую книгу в хранилище в
+// памяти.
 //
 // PUT /books/{id}
 func (c *Client) UpdateBook(ctx context.Context, request *NewBook, params UpdateBookParams) (*Book, error) {
