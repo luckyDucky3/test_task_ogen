@@ -1,0 +1,113 @@
+openapi: 3.0.3
+info:
+  title: Book API
+  version: 1.0.0
+paths:
+  /books:
+    get:
+      operationId: listBooks
+      description: List books.
+      x-description: Returns all books from in-memory storage.
+      responses:
+        '200':
+          description: Books were returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      operationId: createBook
+      description: Create a book.
+      x-description: Stores a new book in in-memory storage and assigns an identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewBook'
+      responses:
+        '201':
+          description: Book was created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+  /books/{id}:
+    get:
+      operationId: getBook
+      description: Get a book.
+      x-description: Reads one book by identifier from in-memory storage.
+      parameters:
+        - $ref: '#/components/parameters/BookID'
+      responses:
+        '200':
+          description: Book was returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+    put:
+      operationId: updateBook
+      description: Update a book.
+      x-description: Replaces one existing book in in-memory storage.
+      parameters:
+        - $ref: '#/components/parameters/BookID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewBook'
+      responses:
+        '200':
+          description: Book was updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+    delete:
+      operationId: deleteBook
+      description: Delete a book.
+      x-description: Removes one book from in-memory storage.
+      parameters:
+        - $ref: '#/components/parameters/BookID'
+      responses:
+        '204':
+          description: Book was deleted.
+components:
+  parameters:
+    BookID:
+      name: id
+      in: path
+      required: true
+      description: Book identifier.
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    NewBook:
+      type: object
+      required:
+        - title
+        - author
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+    Book:
+      type: object
+      required:
+        - id
+        - title
+        - author
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        author:
+          type: string
