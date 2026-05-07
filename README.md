@@ -1,20 +1,91 @@
-# Ogen x-description task
+﻿# Задача по доработке Ogen
 
-Проект показывает доработку генератора `ogen`: у методов в сгенерированном Go-коде рядом со стандартным `description` добавляется комментарий из OpenAPI extension `x-description`.
+Проект демонстрирует доработку генератора `ogen`: в сгенерированном Go-коде у каждого метода рядом со стандартным `description` появляется комментарий из OpenAPI-расширения `x-description`.
 
-## Что внутри
+## Состав проекта
 
-- `third_party/ogen` - локальная копия `github.com/ogen-go/ogen` с правкой генератора.
+- `third_party/ogen` - локальная копия `github.com/ogen-go/ogen` с доработкой генератора.
 - `open-api.yaml` - OpenAPI-спецификация CRUD API для ресурса `Book`.
 - `api` - код, сгенерированный измененным `ogen`.
-- `main.go` - in-memory реализация сервера и клиентский CRUD-сценарий через `httptest`.
+- `main.go` - сервер с хранением данных в памяти и клиентский CRUD-сценарий через `httptest`.
 
-## Команды
+## Требования
+
+1. Установить Go.
+2. Проверить, что команда `go` доступна в терминале:
+
+```powershell
+go version
+```
+
+Если команда не найдена, нужно добавить директорию `bin` из установленного Go в переменную окружения `PATH`.
+
+## Запуск проекта
+
+Все команды выполняются из корня репозитория, то есть из директории, где лежит этот `README.md`.
+
+Сначала скачайте зависимости:
+
+```powershell
+go mod tidy
+```
+
+Проверьте, что проект собирается:
+
+```powershell
+go test ./...
+```
+
+Запустите демонстрационный сценарий:
+
+```powershell
+go run .
+```
+
+Ожидаемый результат:
+
+```text
+created=1 got="The Go Programming Language" books_before_delete=1
+```
+
+Это означает, что in-memory сервер был запущен, клиент создал книгу, обновил ее, получил по идентификатору, запросил список книг и удалил запись.
+
+## Как проверить доработку генератора
+
+Перегенерируйте пакет `api` локально измененным `ogen`:
 
 ```powershell
 Push-Location .\third_party\ogen
-& 'C:\Users\maxle\sdk\go1.26.2\bin\go.exe' run ./cmd/ogen --target ..\..\api --package api --clean ..\..\open-api.yaml
+go run ./cmd/ogen --target ..\..\api --package api --clean ..\..\open-api.yaml
 Pop-Location
-& 'C:\Users\maxle\sdk\go1.26.2\bin\go.exe' test ./...
-& 'C:\Users\maxle\sdk\go1.26.2\bin\go.exe' run .
+```
+
+После генерации проверьте комментарии у методов:
+
+```powershell
+Select-String -Path .\api\oas_server_gen.go -Pattern "хранилища в памяти|Создать книгу|Получить список книг|Обновить книгу|Удалить книгу"
+```
+
+В выводе должны быть строки из обычного `description` и из `x-description`, например:
+
+```text
+// Создать книгу.
+// Сохраняет новую книгу в хранилище в памяти и назначает идентификатор.
+```
+
+После регенерации снова запустите проверку:
+
+```powershell
+go test ./...
+go run .
+```
+
+## Проверка теста внутри Ogen
+
+Для проверки именно измененной логики генератора можно запустить точечный тест:
+
+```powershell
+Push-Location .\third_party\ogen
+go test -run TestOperationXDescriptionGoDoc .
+Pop-Location
 ```
